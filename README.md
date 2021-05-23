@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+---
+## UML Diagram
+
+![uml](assets/uml10.png)
+
+# Deploy Link : 
+[Netlify]()
+
+# Pull Request Link :
+[PR](https://github.com/RubaBanat/storefront/pull/1)
+---
+
 ## Available Scripts
 
 In the project directory, you can run:
