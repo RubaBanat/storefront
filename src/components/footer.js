@@ -21,10 +21,9 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     bottom: 0,
     height:'50px',
-    
+
   },
 }));
-
 
 function Footer(props) {
   

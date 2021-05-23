@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
-
     },
 }));
 function DenseAppBar(props) {
@@ -23,8 +22,6 @@ function DenseAppBar(props) {
         </AppBar>
     )
 }
-
-
 
 
 export default DenseAppBar;
