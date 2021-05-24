@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [Netlify](https://mystorefront1.netlify.app/)
 
 # Pull Request Link :
-[PR](https://github.com/RubaBanat/storefront/pull/1)
+[PR](https://github.com/RubaBanat/storefront/pull/4)
 ---
 
 ## Available Scripts
