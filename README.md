@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ---
 ## UML Diagram
 
-![uml](assets/uml10.png)
+![uml](assets/uml11.png)
 
 # Deploy Link : 
 [Netlify](https://mystorefront1.netlify.app/)

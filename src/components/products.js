@@ -9,9 +9,10 @@ import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state) => {
   return { products: state.products.products, active: state.categories.active };
+  
 };
-const mapDispatchToProps = { addProduct };
 
+const mapDispatchToProps = { addProduct };
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,15 +21,26 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    width:'60%',
-    margin:'auto',
-    borderRadius:'20px',
-    boxShadow:' rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;',
+    width: '70%',
+    margin: 'auto',
+    borderRadius: '20px',
+    boxShadow: ' rgba(0, 0, 0, 0.24) 0px 3px 8px',
     color: theme.palette.text.primary,
+    marginBottom: '80px',
+  },
+  paper1:{
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    width: '100%',
+    margin: 'auto',
+    borderRadius: '20px',
+    boxShadow: ' rgba(0, 0, 0, 0.24)',
+    color: theme.palette.text.primary,
+    marginBottom: '80px',
   },
   container: {
     marginTop: '50px',
-    marginBottom: '30px'
+    marginBottom: '30px',
   },
   containerBtn: {
     marginTop: '30px'
@@ -37,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     height: 160,
     [theme.breakpoints.down('xs')]: {
-      width: '100% !important', 
+      width: '90% !important',
       height: 100,
     },
     '&:hover, &$focusVisible': {
@@ -57,43 +69,55 @@ const useStyles = makeStyles((theme) => ({
 
 const Products = (props) => {
   const classes = useStyles();
+  
   return (
     <>
-    <p style={{marginLeft:'46%',fontSize:'25px'}}>{props.active}</p>
-    <Grid className={classes.container} container justify="center" wrap="wrap" spacing={2}>
-      {props.products.map((product, index) => {
-        product.index = index;
-       
-        return (
-          <Grid key={product.name} item sm={4}>
-            <If condition={props.active !== ''}>
-              <Paper className={classes.paper} >
-                <img alt={product.name} className={classes.image} src={product.image}></img>
-                <Typography variant="h5">
-                  {product.name}
-                </Typography>
-                <Typography variant="P">
-                Price : {product.price}$
-                </Typography> <br/>
-                <Typography variant="P">
-                In Stock : {product.count}
-                </Typography>
-                <Grid className={classes.containerBtn} container justify="center" wrap="wrap" spacing={3}>
-                  <Button onClick={() => props.addProduct(product)} style={{ marginRight: '10px' }} variant="contained" color="primary">
-                    <strong>Add to Cart</strong>
-                  </Button>
-                  <Button variant="outlined" color="primary">
-                    View Details
+     <Paper className={classes.paper1} >
+
+    <div style={{display:'flex' , justifyContent:'center' }}>
+
+      <p style={{ fontSize: '55px', marginTop:'-10px', color :'#252827'}}>{(props.active).toUpperCase() } </p>
+    </div>
+     </Paper>    
+      <Grid className={classes.container} container justify="center" wrap="wrap" spacing={1}>
+        {props.products.map((product) => {
+
+          return (
+            <Grid key={product.name} item sm={3}>
+              <If condition={props.active !== ''}>
+                <Paper className={classes.paper} >
+                  <img alt={product.name} className={classes.image} src={product.image}></img>
+                  <Typography variant="h5">
+                    {product.name}
+                  </Typography>
+                  <Typography variant="P">
+                    Price : {product.price}$
+                </Typography> <br />
+                  <Typography variant="P">
+                    In Stock : {product.inStock}
+                  </Typography>
+                  <Grid className={classes.containerBtn} container justify="center" wrap="wrap" spacing={3}>
+                    <Button onClick={() => {
+                      if (product.inStock) {
+                        props.addProduct(product)
+                      }else{
+                        alert('خلص ما ضل عنا ')
+                      }
+                    }} variant="contained" style={{ background: '#962d2d', width: '100px', fontSize: '9.3px' }}>
+                      <strong>Add to Cart</strong>
+                    </Button>
+                    <Button variant="outlined" color="default" style={{ marginLeft: '20px', width: '100px', fontSize: '9.3px' }}>
+                      View Details
                </Button>
 
-                </Grid>
-              </Paper>
-            </If>
-          </Grid>
-        );
-      })}
-    </Grid>
-      </>
+                  </Grid>
+                </Paper>
+              </If>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 };
 

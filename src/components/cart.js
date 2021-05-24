@@ -9,30 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { showCart } from '../store/cart-reducer'
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import './cart.scss'
 
-// function Cart(props) {
-
-//   return (
-//     <>
-//       {props.cart.map(product => {
-//         return (
-//           <h5>{product}</h5>
-//         )
-//       })}
-//     </>
-//   )
-// }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     cart: state.cart.cart,
-//   };
-// };
-
-// export default connect(mapStateToProps)(Cart);
 
 const useStyles = makeStyles({
     list: {
@@ -78,8 +55,8 @@ const useStyles = makeStyles({
                     <Typography variant="h6">
                       <strong>{product.name}</strong> ({product.count})
                     </Typography>
-                    <IconButton color="primary" onClick={() => { dispatch({ type: 'DELETE', payload: { product, active: state.active } }) }} aria-label="delete">
-                      <DeleteIcon />
+                    <IconButton  style ={{color:' #962d2d'}}  onClick={() => { dispatch({ type: 'DELETE', payload: { product, active: state.active } }) }} aria-label="delete">
+                      <DeleteIcon  />
                     </IconButton>
                   </Grid>
                 </ListItem>
@@ -87,13 +64,6 @@ const useStyles = makeStyles({
               </div>
             )
           })}
-          <AppBar position="fixed" color="primary" className={classes.appBar}>
-            <Grid container alignContent='center' justify="center" spacing={0}>
-              <Button onClick={() => { dispatch({ type: 'CLEAR', payload: state.active }) }} variant="contained" color="primary">
-                <strong>Clear</strong>
-              </Button>
-            </Grid>
-          </AppBar>
         </List>
       </Drawer>
     );
