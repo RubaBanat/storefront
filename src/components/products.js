@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state) => {
   return { products: state.products.products, active: state.categories.active };
-  
+
 };
 
 const mapDispatchToProps = { addProduct };
@@ -23,12 +23,15 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     width: '70%',
     margin: 'auto',
-    borderRadius: '20px',
-    boxShadow: ' rgba(0, 0, 0, 0.24) 0px 3px 8px',
     color: theme.palette.text.primary,
     marginBottom: '80px',
+    background: 'rgba( 255, 255, 255, 0.15 )',
+    boxShadow: '0 5px 15px 0 #eeea',
+    borderRadius: '10px',
+    border: '1px solid rgba( 255, 255, 255, 0.18 )',
+
   },
-  paper1:{
+  paper1: {
     padding: theme.spacing(2),
     textAlign: 'center',
     width: '100%',
@@ -36,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     boxShadow: ' rgba(0, 0, 0, 0.24)',
     color: theme.palette.text.primary,
-    marginBottom: '80px',
+    marginBottom: '100px',
   },
   container: {
     marginTop: '50px',
@@ -69,16 +72,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Products = (props) => {
   const classes = useStyles();
-  
+
   return (
     <>
-     <Paper className={classes.paper1} >
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
 
-    <div style={{display:'flex' , justifyContent:'center' }}>
-
-      <p style={{ fontSize: '55px', marginTop:'-10px', color :'#252827'}}>{(props.active).toUpperCase() } </p>
-    </div>
-     </Paper>    
+          <p style={{ fontSize: '55px', marginTop: '-10%', color: '#fff' }}>{(props.active).toUpperCase()} </p>
+        </div>
       <Grid className={classes.container} container justify="center" wrap="wrap" spacing={1}>
         {props.products.map((product) => {
 
@@ -100,7 +100,7 @@ const Products = (props) => {
                     <Button onClick={() => {
                       if (product.inStock) {
                         props.addProduct(product)
-                      }else{
+                      } else {
                         alert('خلص ما ضل عنا ')
                       }
                     }} variant="contained" style={{ background: '#962d2d', width: '100px', fontSize: '9.3px' }}>
