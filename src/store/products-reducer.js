@@ -12,7 +12,7 @@ const initialState = {
     { name: 'Sushi', category: 'Food', price: 20, inStock: 11, image: 'https://freepngimg.com/thumb/sushi/6-2-sushi-png-image.png' },
     { name: 'Pasta', category: 'Food', price: 8, inStock: 20, image: 'https://www.pngkey.com/png/full/72-724075_italian-pasta-png-penne-pasta-png.png' },
     { name: 'Ice cream', category: 'Food', price: 5, inStock: 15, image: 'https://www.freeiconspng.com/thumbs/ice-cream-png/fruits-ice-cream-png-1.png' },
-    { name: 'Cookies', category: 'Food', price: 4, inStock: 17, image: 'https://assets.stickpng.com/thumbs/580b57fbd9996e24bc43c103.png' },
+    { name: 'Cookies', category: 'Food', price: 4, inStock: 17, image: 'https://cdn.picpng.com/cookie/transparency-cookie-26900.png' },
   ]
 }
 

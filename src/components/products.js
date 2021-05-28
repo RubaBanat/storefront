@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
 
 const mapStateToProps = (state) => {
   return { products: state.products.products, active: state.categories.active };
@@ -18,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  alert: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -25,10 +32,12 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     color: theme.palette.text.primary,
     marginBottom: '80px',
-    background: 'rgba( 255, 255, 255, 0.15 )',
-    boxShadow: '0 5px 15px 0 #eeea',
+    // background: 'rgba( 255, 255, 255, 0.15 )',
+    boxShadow: '0 3px 15px 0 rgba( 255, 255, 255, 0.30 )',
     borderRadius: '10px',
     border: '1px solid rgba( 255, 255, 255, 0.18 )',
+    backdropFilter: 'blur(3px)',
+    backgroundColor: 'rgba(218, 213, 220, 0.2)',
 
   },
   paper1: {
@@ -75,10 +84,10 @@ const Products = (props) => {
 
   return (
     <>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
 
-          <p style={{ fontSize: '55px', marginTop: '-10%', color: '#fff' }}>{(props.active).toUpperCase()} </p>
-        </div>
+        <p style={{ fontSize: '55px', marginTop: '-10%', color: '#fff' }}>{(props.active).toUpperCase()} </p>
+      </div>
       <Grid className={classes.container} container justify="center" wrap="wrap" spacing={1}>
         {props.products.map((product) => {
 
@@ -101,7 +110,12 @@ const Products = (props) => {
                       if (product.inStock) {
                         props.addProduct(product)
                       } else {
-                        alert('خلص ما ضل عنا ')
+                        <div className={classes.alert}>
+                          <Alert variant="outlined" severity="error">
+                            This is an error alert — check it out!
+                       </Alert>
+                        </div>
+                        // alert('خلص ما ضل عنا ')
                       }
                     }} variant="contained" style={{ background: '#962d2d', width: '100px', fontSize: '9.3px' }}>
                       <strong>Add to Cart</strong>
@@ -122,3 +136,27 @@ const Products = (props) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
+
+// import { makeStyles } from '@material-ui/core/styles';
+// import Alert from '@material-ui/lab/Alert';
+
+// const useStyles = makeStyles((theme) => ({
+//   alert: {
+//     width: '100%',
+//     '& > * + *': {
+//       marginTop: theme.spacing(2),
+//     },
+//   },
+// }));
+
+// export default function SimpleAlerts() {
+//   const classes = useStyles();
+
+//   return (
+//     <div className={classes.alert}>
+//       <Alert variant="outlined" severity="error">
+//         This is an error alert — check it out!
+//       </Alert>
+//     </div>
+//   );
+// }

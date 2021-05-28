@@ -9,7 +9,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-color: #0f1110;
+  /* background-color: #101110fb; */
+  background-image: url(https://i.gifer.com/1Fvi.gif); 
+  /* background-repeat: no-repeat; */
+  /* background-size: cover;  */
  
   
 }
