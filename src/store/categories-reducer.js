@@ -1,3 +1,7 @@
+import superagent from 'superagent'
+
+const API = 'https://api-js401.herokuapp.com/api/v1/products';
+
 const initialState = {
     categories: [
         { name: 'Food', displayName: 'Food', description: 'Food description', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5prfTaOTAyUDETilMUzfaFlgU5UA0MHluHfLLsq4JW18dqzFdidn6R9Es7voek4taAQ8&usqp=CAU' },
@@ -26,4 +30,18 @@ export const activeCategory = (name) => {
     }
 }
 
+export const getRemoteData = () => {
+    return (dispatch) => {
+      return superagent.get(`${API}/categories`).then((response) => {
+        dispatch(getCategories({ categories: response.body.results, active: '' }));
+      });
+    };
+  };
+  
+  const getCategories = (payload) => {
+    return {
+      type: 'GET_C',
+      payload: payload,
+    };
+  };
 export default categoryReducer;

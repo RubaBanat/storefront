@@ -1,3 +1,7 @@
+import superagent from 'superagent'
+const API = 'https://api-js401.herokuapp.com/api/v1/products';
+
+
 const initialState = {
   products: [
     { name: 'Iphone 12 Pro Max', category: 'Electronics', price: 880, inStock: 32, image: 'https://cloudnine.shopping/ict/images/detailed/8/iphone-12-pro-max-blue-hero_67mb-9i.png' },
@@ -47,9 +51,56 @@ export default (state = initialState, action) => {
         if (payload.active === payload.product.category && payload.product.inStock === 0) {
           return { products: [...state.products, payload.product] };
         }
-        return state;
+        return { products: [...state.products] };
+        case 'GET_P':
+          initialState = payload;
+          return payload;
 
         default:
           return state;
       }
+    };
+
+    export const getRemoteData = () => {
+      return (dispatch) => {
+        return superagent.get(`${API}/products`).then((response) => {
+          dispatch(getProducts({ products: response.body.results }));
+        });
+      };
+    };
+    
+    export const updateRemoteData = (product) => {
+      return (dispatch) => {
+        return superagent.put(`${API}/products/${product._id}`).send({ inStock: product.inStock - 1 }).then(() => {
+          dispatch(addProduct(product));
+        });
+      };
+    };
+    
+    const getProducts = (payload) => {
+      return {
+        type: 'GET_P',
+        payload: payload,
+      };
+    };
+    
+    export const addProduct = (product) => {
+      return {
+        type: 'ADD',
+        payload: product,
+      };
+    };
+    
+    export const resetRemoteData = (payload) => {
+      return (dispatch) => {
+        return superagent.put(`${API}/products/${payload.product._id}`).send({ inStock: payload.product.inStock + payload.product.count }).then(() => {
+          dispatch(resetProduct(payload));
+        });
+      };
+    };
+    export const resetProduct = (payload) => {
+      return {
+        type: 'DELETE',
+        payload: payload,
+      };
     };

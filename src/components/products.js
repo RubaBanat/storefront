@@ -6,14 +6,15 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert';
+// import Alert from '@material-ui/lab/Alert';
+import { getRemoteData,updateRemoteData } from '../store/products-reducer'
 
 const mapStateToProps = (state) => {
   return { products: state.products.products, active: state.categories.active };
-
 };
+const mapDispatchToProps = { updateRemoteData,getRemoteData };
 
-const mapDispatchToProps = { addProduct };
+// const mapDispatchToProps = { addProduct };
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,18 +107,19 @@ const Products = (props) => {
                     In Stock : {product.inStock}
                   </Typography>
                   <Grid className={classes.containerBtn} container justify="center" wrap="wrap" spacing={3}>
-                    <Button onClick={() => {
+                    <Button  onClick={() => {
+                      
                       if (product.inStock) {
                         props.addProduct(product)
                       } else {
-                        <div className={classes.alert}>
-                          <Alert variant="outlined" severity="error">
-                            This is an error alert — check it out!
-                       </Alert>
-                        </div>
-                        // alert('خلص ما ضل عنا ')
+                      //   <div className={classes.alert}>
+                      //     <Alert variant="outlined" severity="error">
+                      //       This is an error alert — check it out!
+                      //  </Alert>
+                      //   </div>
+                        alert('Sorry! This Product out of Stock :)')
                       }
-                    }} variant="contained" style={{ background: '#962d2d', width: '100px', fontSize: '9.3px' }}>
+                    }} variant="contained" style={{ background: '#962d2d', width: '100px', fontSize: '9.3px' }} >
                       <strong>Add to Cart</strong>
                     </Button>
                     <Button variant="outlined" color="default" style={{ marginLeft: '20px', width: '100px', fontSize: '9.3px' }}>
@@ -137,26 +139,3 @@ const Products = (props) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
 
-// import { makeStyles } from '@material-ui/core/styles';
-// import Alert from '@material-ui/lab/Alert';
-
-// const useStyles = makeStyles((theme) => ({
-//   alert: {
-//     width: '100%',
-//     '& > * + *': {
-//       marginTop: theme.spacing(2),
-//     },
-//   },
-// }));
-
-// export default function SimpleAlerts() {
-//   const classes = useStyles();
-
-//   return (
-//     <div className={classes.alert}>
-//       <Alert variant="outlined" severity="error">
-//         This is an error alert — check it out!
-//       </Alert>
-//     </div>
-//   );
-// }

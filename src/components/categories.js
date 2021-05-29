@@ -11,6 +11,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import './categoreis.scss';
+import { getRemoteData } from '../store/categories-reducer'
 
 
 const mapStateToProps = (state) => {
@@ -20,7 +21,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = { activeCategory };
+const mapDispatchToProps = { activeCategory, getRemoteData };
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -61,7 +62,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function SwipeableTextMobileStepper(props) {
+
+
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -80,9 +84,7 @@ function SwipeableTextMobileStepper(props) {
   };
 
   return (
-     
-
-      
+       
     <div className={classes.root} style ={{ zIndex:'1'}}>
         
            
